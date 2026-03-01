@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+    <link rel="stylesheet" href="viewOrder.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>My Orders</h1>
+
+        <div id="ordersWrapper">
+
+            <!-- Loader / Skeleton -->
+            <div id="loader" class="skeleton-wrapper">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-row"></div>
+                <div class="skeleton skeleton-row"></div>
+                <div class="skeleton skeleton-row"></div>
+                <div class="skeleton skeleton-row"></div>
+            </div>
+
+            <!-- Example Static Order 1 (Processing) -->
+            <div class="card hidden">
+                <div class="header">
+                    <div>
+                        <h3>Order #<span>101</span></h3>
+                    </div>
+                    <div>
+                        <span class="badge status-ordered">Ordered</span>
+                        <span class="payment payment-paid">Paid</span>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="active">Ordered</div>
+                    <div>Shipped</div>
+                    <div>Delivered</div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <img src="https://via.placeholder.com/50" alt="Wireless Mouse">
+                                    Wireless Mouse
+                                </div>
+                            </td>
+                            <td>$25</td>
+                            <td>2</td>
+                            <td>$50</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <img src="https://via.placeholder.com/50" alt="Keyboard">
+                                    Keyboard
+                                </div>
+                            </td>
+                            <td>$50</td>
+                            <td>1</td>
+                            <td>$50</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="summary">
+                    <div><span>Subtotal</span><span>$100</span></div>
+                    <div><span>Shipping</span><span>$10</span></div>
+                    <div class="total"><span>Total</span><span>$110</span></div>
+                    <div class="actions">
+                        <button class="danger cancelBtn">Cancel Order</button>
+                        <button class="invoiceBtn">Download Invoice</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Static Order 2 (Delivered) -->
+            <div class="card hidden">
+                <div class="header">
+                    <div>
+                        <h3>Order #<span>102</span></h3>
+                    </div>
+                    <div>
+                        <span class="badge status-delivered">Delivered</span>
+                        <span class="payment payment-paid">Paid</span>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="active">Ordered</div>
+                    <div class="active">Shipped</div>
+                    <div class="active">Delivered</div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monitor</td>
+                            <td>$200</td>
+                            <td>1</td>
+                            <td>$200</td>
+                        </tr>
+                        <tr>
+                            <td>HDMI Cable</td>
+                            <td>$20</td>
+                            <td>2</td>
+                            <td>$40</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="summary">
+                    <div><span>Subtotal</span><span>$240</span></div>
+                    <div><span>Shipping</span><span>$15</span></div>
+                    <div class="total"><span>Total</span><span>$255</span></div>
+                    <div class="actions">
+                        <button class="invoiceBtn">Download Invoice</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="viewOrder.js"></script>
+</body>
+
+</html>

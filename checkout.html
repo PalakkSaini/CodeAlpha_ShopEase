@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopEase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <div class="logo">ShopEase</div>
+        <div class="nav-right">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <div class="cart-icon">
+                🛒 Cart <span id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= CHECKOUT CONTAINER ================= -->
+    <div class="checkout-container">
+
+        <!-- LEFT: Delivery Details -->
+        <div class="checkout-left">
+            <h2>Delivery Details</h2>
+            <form id="checkout-form">
+
+                <!-- Full Name -->
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" placeholder="John Doe" required>
+
+                <!-- Email -->
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+
+                <!-- Country & Phone -->
+                <label for="country">Country</label>
+                <select id="country" required>
+                    <option value="IN" selected>India (+91)</option>
+                    <option value="US">USA (+1)</option>
+                    <option value="UK">UK (+44)</option>
+                    <option value="AU">Australia (+61)</option>
+                    <option value="CA">Canada (+1)</option>
+                </select>
+
+                <label for="phone">Phone Number</label>
+                <div class="phone-wrapper">
+                    <select id="phone-code">
+                        <option value="+91" selected>+91</option>
+                        <option value="+1">+1</option>
+                        <option value="+44">+44</option>
+                        <option value="+61">+61</option>
+                    </select>
+                    <input type="tel" id="phone" placeholder="9876543210" required>
+                </div>
+
+                <!-- Combined Address -->
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="123, ABC Street, City Name, State Name, 123456" required>
+
+                <!-- <button type="submit" class="place-order-btn">Place Order</button> -->
+                <button type="submit" class="place-order-btn">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- RIGHT: Order Summary -->
+        <div class="checkout-right">
+            <h3>Order Summary</h3>
+            <div id="checkout-cart-items"></div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping Fee</span>
+                <span id="shipping">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Platform Fee</span>
+                <span id="platform">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (5%)</span>
+                <span id="tax">₹0</span>
+            </div>
+            <div class="summary-row discount-row">
+                <span>Discount</span>
+                <span id="discount">₹0</span>
+            </div>
+            <hr>
+            <div class="summary-total">
+                <span>Total</span>
+                <span id="total">₹0</span>
+            </div>
+
+            <!-- Coupon -->
+            <div class="coupon-section">
+                <input type="text" id="coupon-input" placeholder="Enter Coupon Code">
+                <button type="button" onclick="applyCoupon()">Apply</button>
+                <p id="coupon-msg"></p>
+            </div>
+        </div>
+
+    </div>
+
+        <!-- ================= FOOTER ================= -->
+    <footer id="contact">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <div class="logo">Shop<span>Ease</span></div>
+                <p>Your one-stop shop for electronics, fashion & more.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="Electronics.html">Smartphones</a></li>
+                    <li><a href="Electronics.html">Laptops</a></li>
+                    <li><a href="fashion.html">Footwear</a></li>
+                    <li><a href="Electronics.html">Watches</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="viewOrder.html">Returns</a></li>
+                    <li><a href="viewOrder.html">Shipping</a></li>
+                    <li><a href="#contact">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email:
+                    <a href="mailto:support@shopease.com">
+                        support@shopease.com
+                    </a>
+                </p>
+                <p>Phone:
+                    <a href="tel:+9198765432100">
+                        +91 98765432100
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ShopEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ================= JS ================= -->
+    <script src="checkout.js"></script>
+</body>
+
+</html>

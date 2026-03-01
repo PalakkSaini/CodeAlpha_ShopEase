@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmed | ShopEase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="thankyou.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Success Icon -->
+        <div class="success-icon">
+            <svg viewBox="0 0 120 120">
+                <circle class="circle" cx="60" cy="60" r="55" />
+                <polyline class="tick" points="40,65 55,80 80,50" />
+            </svg>
+        </div>
+
+        <h1>Order Confirmed 🎉</h1>
+        <p class="sub-text">Thank you for shopping with us.</p>
+
+        <!-- Order Details -->
+        <div class="order-box">
+            <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+            <p><strong>Estimated Delivery:</strong> 3 - 5 Business Days</p>
+            <p><strong>Payment Status:</strong> <span class="paid">Paid</span></p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <a href="index.html" class="btn primary">Continue Shopping</a>
+            <a href="viewOrder.html" class="btn secondary">View Orders</a>
+        </div>
+
+    </div>
+
+    <script src="thankyou.js"></script>
+</body>
+
+</html>

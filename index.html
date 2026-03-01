@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ShopEase | Your Online Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="logo">Shop<span>Ease</span></div>
+
+        <!-- MAIN NAV -->
+        <nav>
+            <a href="index.html">Home</a>
+
+            <!-- MEGA MENU -->
+            <div class="dropdown">
+                <a href="#categories" class="dropbtn">Categories ▾</a>
+                <div class="dropdown-content">
+                    <div class="mega-menu">
+                        <div class="mega-section">
+                            <h4>Electronics</h4>
+                            <a href="Electronics.html">Smartphones</a>
+                            <a href="Electronics.html">Laptops</a>
+                            <a href="Electronics.html">Headphones</a>
+                            <a href="Electronics.html">Watches</a>
+                            <a href="Electronics.html">Cameras</a>
+                        </div>
+                        <div class="mega-section">
+                            <h4>Fashion</h4>
+                            <a href="fashion.html">Men's Clothing</a>
+                            <a href="fashion.html">Women's Clothing</a>
+                            <a href="fashion.html">Shoes</a>
+                            <a href="fashion.html">Accessories</a>
+                        </div>
+                        <div class="mega-section">
+                            <h4>Home & Kitchen</h4>
+                            <a href="Home&Kitchen.html">Furniture</a>
+                            <a href="Home&Kitchen.html">Decor</a>
+                            <a href="Home&Kitchen.html">Lighting</a>
+                            <a href="Home&Kitchen.html">Kitchen Appliances</a>
+                        </div>
+                        <div class="mega-section">
+                            <h4>Sports & Toys</h4>
+                            <a href="Toys&Sports.html">Toys</a>
+                            <a href="Toys&Sports.html">Sports Equipment</a>
+                            <a href="Toys&Sports.html">Outdoor</a>
+                            <a href="Toys&Sports.html">Fitness</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#products">Shop</a>
+            <a href="#top-deals-carousel">Deals</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- SEARCH + USER + CART -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <button onclick="searchProduct()">🔍</button>
+        </div>
+
+        <div class="nav-icons">
+            <a href="login.html" id="loginBtn">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="userName" style="margin-left:10px;"></a>
+            <a href="#" id="logoutBtn" style="display:none; margin-left:10px;">Logout</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="intro-photo">
+        <img src="Images/Background.jfif" class="bg-image">
+        <div class="intro-overlay">
+            <div class="intro-content">
+                <h1 class="hero-title">
+                    <span class="welcome-text">Welcome to</span>
+                    <span class="dynamic-text"></span> <!-- leave empty, JS will fill it -->
+                </h1>
+
+                <p>Best deals, trending products, and fast delivery at your doorstep.</p>
+                <a href="#products" class="intro-btn">Start Shopping</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= TOP DEALS CAROUSEL ================= -->
+    <section class="top-deals-carousel" id="top-deals-carousel">
+        <h2>Top Deals / Limited Time Offers</h2>
+
+        <div class="carousel-container">
+            <button class="arrow left-arrow">&#10094;</button>
+            <div class="carousel-track-container">
+                <ul class="carousel-track">
+                    <li class="carousel-slide current-slide">
+                        <img src="Images/Phone banner.png" alt="Smartphone">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="Images/Headphone banner.png" alt="Headphones">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="Images/watch banner.png" alt="Digital Watch">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="Images/Shoes banner.png" alt="Footwear">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="Images/Laptop banner.png" alt="Laptop">
+                    </li>
+                </ul>
+            </div>
+            <button class="arrow right-arrow">&#10095;</button>
+        </div>
+
+        <div class="carousel-nav">
+            <button class="carousel-indicator current-slide"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+        </div>
+    </section>
+
+    <!-- ================= COMBO / BUNDLE DEALS ================= -->
+    <section class="combo-deals">
+        <h2>Combo / Bundle Deals</h2>
+        <div class="combo-grid">
+            <div class="combo-card">
+                <span class="deal-badge">-35%</span>
+                <img src="Images/Sp+H.jfif" alt="Smartphone + Headphones">
+                <h4>Smartphone + Headphones</h4>
+                <p class="price">₹20000 <span class="old-price">₹25000</span></p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="combo-card">
+                <span class="deal-badge">-25%</span>
+                <img src="Images/L+M.jfif" alt="Laptop + Mouse">
+                <h4>Laptop + Wireless Mouse</h4>
+                <p class="price">₹100000 <span class="old-price">₹110000</span></p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="combo-card">
+                <span class="deal-badge">-40%</span>
+                <img src="Images/W+B.jfif" alt="Digital Watch + Bracelet">
+                <h4>Watch + Bracelet Combo</h4>
+                <p class="price">₹5000<span class="old-price">₹5500</span></p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="combo-card">
+                <span class="deal-badge">-30%</span>
+                <img src="Images/So+S.jfif" alt="Shoes + Socks">
+                <h4>Running Shoes + Socks</h4>
+                <p class="price">₹2000<span class="old-price">₹2500</span></p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= FEATURED PRODUCTS ================= -->
+    <section class="products" id="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- JS will dynamically insert products here -->
+        </div>
+    </section>
+
+    <!-- ================= SUGGESTED FOR YOU ================= -->
+    <section class="suggested">
+        <h2>Suggested For You</h2>
+        <div class="suggested-grid" id="suggestedGrid">
+            <!-- JS will dynamically insert suggested products -->
+        </div>
+    </section>
+
+    <!-- ================= CUSTOMER REVIEWS ================= -->
+    <section class="reviews">
+        <h2>What Our Customers Say</h2>
+        <div class="reviews-wrapper">
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="review-card">
+                        <img src="Images/Ayush.jpg" alt="Customer">
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p>Amazing shopping experience and fast delivery.</p>
+                        <strong>Ayush Sharma</strong>
+                    </div>
+                    <div class="review-card">
+                        <img src="Images/Rishabh.jpg" alt="Customer">
+                        <p>⭐⭐⭐⭐☆</p>
+                        <p>Good quality products and nice UI.</p>
+                        <strong>Rishabh Verma</strong>
+                    </div>
+                    <div class="review-card">
+                        <img src="Images/Shree.jpg" alt="Customer">
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p>Best prices and smooth checkout process.</p>
+                        <strong>Shree Gupta</strong>
+                    </div>
+                    <div class="review-card">
+                        <img src="Images/Preeti.jpg" alt="Customer">
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p>I really like the clean design of this website.</p>
+                        <strong>Preeti Singh</strong>
+                    </div>
+                    <div class="review-card">
+                        <img src="Images/Rahul.jpg" alt="Customer">
+                        <p>⭐⭐⭐⭐☆</p>
+                        <p>Overall great experience, will shop again.</p>
+                        <strong>Rahul Mehta</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer id="contact">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <div class="logo">Shop<span>Ease</span></div>
+                <p>Your one-stop shop for electronics, fashion & more.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="Electronics.html">Smartphones</a></li>
+                    <li><a href="Electronics.html">Laptops</a></li>
+                    <li><a href="fashion.html">Footwear</a></li>
+                    <li><a href="Electronics.html">Watches</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="viewOrder.html">Returns</a></li>
+                    <li><a href="viewOrder.html">Shipping</a></li>
+                    <li><a href="#contact">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email:
+                    <a href="mailto:support@shopease.com">
+                        support@shopease.com
+                    </a>
+                </p>
+                <p>Phone:
+                    <a href="tel:+9198765432100">
+                        +91 98765432100
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ShopEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- ================= SCRIPT ================= -->
+    <script src="script.js"></script>
+    </script>
+    <script src="carousel.js"></script> <!-- Carousel functionality -->
+</body>
+
+</html>

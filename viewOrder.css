@@ -1,0 +1,430 @@
+/* ============================
+   General Reset
+============================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 30px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ============================
+   Container & Heading
+============================ */
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+/* ============================
+   Card
+============================ */
+.card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 0.7s ease forwards;
+}
+
+.card.hidden {
+    display: none;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================
+   Card Header
+============================ */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 12px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Badge colors aligned to theme */
+.status-ordered {
+    background: #00aaff;
+    color: #fff;
+}
+
+.status-shipped {
+    background: #0077cc;
+    color: #fff;
+}
+
+.status-delivered {
+    background: #00cc77;
+    color: #fff;
+}
+
+.status-cancelled {
+    background: #cc3300;
+    color: #fff;
+}
+
+/* Payment badge */
+.payment {
+    margin-left: 10px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    background: #eee;
+}
+
+.payment-paid {
+    background: #00cc77;
+    color: #fff;
+}
+
+.payment-failed {
+    background: #cc3300;
+    color: #fff;
+}
+
+/* ============================
+   Timeline
+============================ */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    font-size: 13px;
+    position: relative;
+}
+
+.timeline div {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    opacity: 0.5;
+    transition: all 0.4s ease;
+}
+
+.timeline div.active {
+    color: #0077cc;
+    font-weight: bold;
+    opacity: 1;
+    animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================
+   Table
+============================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+tbody tr {
+    transition: transform 0.3s, background 0.3s;
+}
+
+tbody tr:hover {
+    transform: translateX(5px);
+    background: rgba(0, 119, 204, 0.1);
+    /* theme hover */
+}
+
+/* ============================
+   Product Cell with Image
+============================ */
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-cell img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-cell img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 119, 204, 0.2);
+}
+
+/* ============================
+   Summary
+============================ */
+.summary {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.summary div {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+
+.total {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ============================
+   Actions
+============================ */
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.actions button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.actions button:hover {
+    transform: translateY(-2px);
+    background: #005fa3;
+    /* darker shade theme hover */
+}
+
+.danger {
+    background: #cc3300;
+    color: #fff;
+}
+
+.invoiceBtn {
+    background: #0077cc;
+    color: #fff;
+}
+
+.copyBtn {
+    background: #0077cc;
+    color: #fff;
+}
+
+/* ============================
+   Skeleton Loader
+============================ */
+.skeleton-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+    animation: shimmer 1.2s infinite;
+    border-radius: 6px;
+}
+
+.skeleton-text {
+    height: 20px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.skeleton-row {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px;
+    }
+
+    100% {
+        background-position: 200px;
+    }
+}
+
+/* ============================
+   Toast Notification
+============================ */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #0077cc;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* ============================
+   Error message
+============================ */
+.error {
+    color: #fff;
+    background: #cc3300;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ============================
+   Responsive
+============================ */
+@media(max-width:768px) {
+    .card {
+        padding: 20px
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block
+    }
+
+    thead tr {
+        display: none
+    }
+
+    td {
+        position: relative;
+        padding-left: 50%
+    }
+
+    td::before {
+        position: absolute;
+        left: 10px;
+        width: 40%;
+        white-space: nowrap;
+        font-weight: bold
+    }
+
+    td:nth-of-type(1)::before {
+        content: "Product"
+    }
+
+    td:nth-of-type(2)::before {
+        content: "Price"
+    }
+
+    td:nth-of-type(3)::before {
+        content: "Qty"
+    }
+
+    td:nth-of-type(4)::before {
+        content: "Total"
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .product-cell img {
+        width: 40px;
+        height: 40px;
+    }
+}

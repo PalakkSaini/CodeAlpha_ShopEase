@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    padding: 40px 36px 48px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-title {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+    color: #004a80;
+}
+
+/* Animate login card on load */
+.login-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.8s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-group {
+    text-align: left;
+    position: relative;
+}
+
+.input-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #222;
+    font-size: 0.9rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.8px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #0077cc;
+    box-shadow: 0 0 6px rgba(0, 119, 204, 0.5);
+}
+
+.error-message {
+    color: #e02424;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 18px;
+}
+
+.form-footer {
+    text-align: right;
+}
+
+.forgot-password {
+    font-size: 0.875rem;
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover,
+.forgot-password:focus {
+    color: #004a80;
+    text-decoration: underline;
+}
+
+.btn-login {
+    padding: 14px 0;
+    background: #0077cc;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0, 119, 204, 0.4);
+}
+
+.btn-login:hover,
+.btn-login:focus {
+    background: #005fa3;
+    box-shadow: 0 6px 20px rgba(0, 95, 163, 0.6);
+}
+
+.signup-redirect {
+    margin-top: 28px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.signup-redirect a {
+    color: #0077cc;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signup-redirect a:hover,
+.signup-redirect a:focus {
+    color: #004a80;
+    text-decoration: underline;
+}
+
+/* Responsive for small devices */
+@media (max-width: 400px) {
+    .login-wrapper {
+        padding: 32px 24px 40px;
+    }
+}
+
+.form-input {
+    width: 100%;
+    height: 50px;
+    padding: 0 18px;
+    border: 1.8px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: normal;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #0077cc;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.4);
+}
+
+
+.btn-login {
+    transition: all 0.3s ease, transform 0.2s ease;
+}
+
+.btn-login:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 95, 163, 0.6);
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Password / Email fields same height */
+.input-group input {
+    width: 100%;
+    height: 50px;
+    /* fixed height */
+    padding: 0 18px;
+    /* horizontal padding */
+    border: 1.8px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 50px;
+    /* match height */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus state */
+.input-group input:focus {
+    outline: none;
+    border-color: #0077cc;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.4);
+}
+
+/* Show / Hide toggle text */
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0077cc;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover animation */
+.toggle-password:hover {
+    color: #004a80;
+    transform: translateY(-50%) scale(1.1);
+}

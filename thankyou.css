@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #e4ebf5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Success Icon */
+.success-icon svg {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.circle {
+    fill: none;
+    stroke: #28a745;
+    stroke-width: 5;
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
+    animation: drawCircle 0.6s forwards ease-out;
+}
+
+.tick {
+    fill: none;
+    stroke: #28a745;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: drawTick 0.5s 0.6s forwards ease-out;
+}
+
+/* Text */
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.sub-text {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Order Box */
+.order-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.order-box p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.paid {
+    color: #28a745;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.primary {
+    background: #ff9900;
+    color: white;
+}
+
+.primary:hover {
+    background: #e68a00;
+}
+
+.secondary {
+    background: #ddd;
+    color: #333;
+}
+
+.secondary:hover {
+    background: #ccc;
+}
+
+/* Animations */
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawTick {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container {
+        padding: 25px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase | Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+
+    <div class="login-wrapper">
+
+        <!-- Signup Card -->
+        <div class="login-card active" id="signupCard">
+            <h2 class="login-title">Sign Up</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required
+                        autocomplete="username" />
+                    <div class="error-message"></div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" required placeholder="Enter password">
+                        <span class="toggle-password">Show</span>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Confirm Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirmPassword" required placeholder="Confirm password">
+                        <span class="toggle-password">Show</span>
+                    </div>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <button type="submit" class="btn-login">Sign Up</button>
+            </form>
+            <p class="signup-redirect">
+                Already have an account? <a href="login.html">Login</a>
+            </p>
+        </div>
+
+    </div>
+
+</body>
+<script src="signup.js"></script>
+
+</html>

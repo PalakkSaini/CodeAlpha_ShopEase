@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionMart</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f3f6;
+        }
+
+        header {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo span {
+            color: #0077cc;
+        }
+
+        /* ================= SEARCH BOX ================= */
+        .search-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d1d5db;
+            border-radius: 25px;
+            overflow: hidden;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input {
+            border: none;
+            padding: 10px 15px;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-box button {
+            border: none;
+            background: #0077cc;
+            color: #fff;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+        }
+
+        .search-box button:hover {
+            background: #005fa3;
+        }
+
+        #cart {
+            background: #2874f0;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            width: 260px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        #cart.active .cart-dropdown {
+            display: block;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            padding: 20px 40px;
+        }
+
+        .filters select {
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+
+        main#products {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 260px);
+            justify-content: center;
+            gap: 25px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            width: 260px;
+            height: 400px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            margin: 12px;
+            font-size: 16px;
+        }
+
+        .product-card p {
+            margin: 3px 12px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2874f0;
+        }
+
+        .add-cart-btn {
+            margin: 12px;
+            padding: 10px;
+            border: none;
+            background: #2874f0;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #ffffff;
+            padding: 40px 40px 20px;
+            border-top: 1px solid #d1d5db;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Layout */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Columns */
+        .footer-col {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        /* Headings */
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #2563eb;
+            /* brand blue */
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            margin-bottom: 12px;
+            color: #111827;
+        }
+
+        /* Text */
+        .footer-col p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Links */
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #2563eb;
+            padding-left: 4px;
+        }
+
+        /* Bottom */
+        .footer-bottom {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 30px;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .mega-menu {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px 20px;
+            }
+
+            .search-box input {
+                width: 120px;
+            }
+
+            .intro-content h1 {
+                font-size: 32px;
+            }
+
+            .combo-grid,
+            .product-grid,
+            .suggested-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .combo-grid,
+            .product-grid,
+            .suggested-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-slide img {
+                height: 200px;
+            }
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        #toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Shop<span>Ease</span></div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <button onclick="searchProduct()">🔍</button>
+        </div>
+        <div id="cart">
+            🛒 <span id="cart-count">0</span>
+            <div class="cart-dropdown">
+                <ul id="cart-items-list"></ul>
+                <p id="cart-total">Total: $0</p>
+                <button id="clear-cart-btn">Clear Cart</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="filters">
+        <select id="category-filter">
+            <option value="all">All Fashion</option>
+            <option value="women">Women Fashion</option>
+            <option value="men">Men Fashion</option>
+            <option value="kids">Kids Fashion</option>
+            <option value="accessories">Accessories</option>
+            <option value="jewellery">Jewellery</option>
+
+        </select>
+
+        <select id="price-filter">
+            <option value="all">All Prices</option>
+            <option value="0-50">Under $50</option>
+            <option value="50-150">$50 - $150</option>
+            <option value="150-1000">Above $150</option>
+        </select>
+
+        <select id="sort-filter">
+            <option value="default">Sort By</option>
+            <option value="low">Price Low to High</option>
+            <option value="high">Price High to Low</option>
+        </select>
+    </section>
+
+    <main id="products">
+
+        <!-- WOMEN (6) -->
+        <div class="product-card" data-name="Floral Dress" data-category="women" data-price="89"><img
+                src="Images/WD.jfif">
+            <h3>Floral Dress</h3>
+            <p>Summer Wear</p>
+            <p class="price">$89</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Denim Jacket" data-category="women" data-price="110"><img
+                src="Images/DW.jfif">
+            <h3>Denim Jacket</h3>
+            <p>Stylish Fit</p>
+            <p class="price">$110</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Heels Sandal" data-category="women" data-price="70"><img
+                src="Images/Heel.jpg">
+            <h3>Heels Sandal</h3>
+            <p>Party Wear</p>
+            <p class="price">$70</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Women Kurti" data-category="women" data-price="60"><img
+                src="Images/WK.jfif">
+            <h3>Women Kurti</h3>
+            <p>Casual Style</p>
+            <p class="price">$60</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Women Handbag" data-category="women" data-price="130"><img
+                src="Images/WP.jfif">
+            <h3>Women Handbag</h3>
+            <p>Premium Leather</p>
+            <p class="price">$130</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Women Jeans" data-category="women" data-price="75"><img
+                src="Images/WJ.jfif">
+            <h3>Women Jeans</h3>
+            <p>Slim Fit</p>
+            <p class="price">$75</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- MEN (6) -->
+        <div class="product-card" data-name="Casual Shirt" data-category="men" data-price="55"><img
+                src="Images/WS.jfif">
+            <h3>Casual Shirt</h3>
+            <p>100% Cotton</p>
+            <p class="price">$55</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Formal Suit" data-category="men" data-price="299"><img
+                src="Images/WFS.jfif">
+            <h3>Formal Suit</h3>
+            <p>Wedding Wear</p>
+            <p class="price">$299</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Men Sneakers" data-category="men" data-price="95"><img
+                src="Images/MS.jfif">
+            <h3>Men Sneakers</h3>
+            <p>Sporty</p>
+            <p class="price">$95</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Leather Jacket" data-category="men" data-price="180"><img
+                src="Images/MJ.jfif">
+            <h3>Leather Jacket</h3>
+            <p>Winter Wear</p>
+            <p class="price">$180</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Men Hoodie" data-category="men" data-price="85"><img src="Images/MH.jfif">
+            <h3>Men Hoodie</h3>
+            <p>Warm & Soft</p>
+            <p class="price">$85</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Men Jeans" data-category="men" data-price="90"><img src="Images/MG.jfif">
+            <h3>Men Jeans</h3>
+            <p>Regular Fit</p>
+            <p class="price">$90</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- KIDS (6) -->
+        <div class="product-card" data-name="Kids Party Dress" data-category="kids" data-price="65"><img
+                src="Images/KP.jfif">
+            <h3>Kids Party Dress</h3>
+            <p>Colorful</p>
+            <p class="price">$65</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Kids T-Shirt Pack" data-category="kids" data-price="40"><img
+                src="Images/KTP.jfif">
+            <h3>Kids T-Shirt Pack</h3>
+            <p>Set of 3</p>
+            <p class="price">$40</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Kids Sneakers" data-category="kids" data-price="75"><img
+                src="Images/KS.jfif">
+            <h3>Kids Sneakers</h3>
+            <p>Comfort Fit</p>
+            <p class="price">$75</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Kids Hoodie" data-category="kids" data-price="50"><img
+                src="Images/KH.jfif">
+            <h3>Kids Hoodie</h3>
+            <p>Warm Wear</p>
+            <p class="price">$50</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Kids Shorts" data-category="kids" data-price="35"><img
+                src="Images/KSO.jfif">
+            <h3>Kids Shorts</h3>
+            <p>Summer Wear</p>
+            <p class="price">$35</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Kids Jacket" data-category="kids" data-price="95"><img
+                src="Images/KJ.jfif">
+            <h3>Kids Jacket</h3>
+            <p>Winter Collection</p>
+            <p class="price">$95</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- ACCESSORIES (6) -->
+        <div class="product-card" data-name="Fashion Sunglasses" data-category="accessories" data-price="45"><img
+                src="Images/SG.jfif">
+            <h3>Fashion Sunglasses</h3>
+            <p>UV Protection</p>
+            <p class="price">$45</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Leather Belt" data-category="accessories" data-price="35"><img
+                src="Images/LB.jfif">
+            <h3>Leather Belt</h3>
+            <p>Premium Quality</p>
+            <p class="price">$35</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Wrist Watch" data-category="accessories" data-price="150"><img
+                src="Images/Apple Watch UI.jfif">
+            <h3>Wrist Watch</h3>
+            <p>Luxury Style</p>
+            <p class="price">$150</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Cap Hat" data-category="accessories" data-price="25"><img
+                src="Images/C.jfif">
+            <h3>Cap Hat</h3>
+            <p>Casual</p>
+            <p class="price">$25</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Scarf" data-category="accessories" data-price="30"><img
+                src="Images/S.jfif">
+            <h3>Scarf</h3>
+            <p>Soft Fabric</p>
+            <p class="price">$30</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="Backpack" data-category="accessories" data-price="120"><img
+                src="Images/Backpack.jfif">
+            <h3>Backpack</h3>
+            <p>Travel Friendly</p>
+            <p class="price">$120</p><button class="add-cart-btn">Add to Cart</button>
+        </div>
+        <!-- JEWELLERY (6) -->
+
+        <div class="product-card" data-name="Gold Necklace Set" data-category="jewellery" data-price="350">
+            <img src="Images/GN.jfif">
+            <h3>Gold Necklace Set</h3>
+            <p>Premium Bridal Collection</p>
+            <p class="price">$350</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Diamond Ring" data-category="jewellery" data-price="500">
+            <img src="Images/DR.jfif">
+            <h3>Diamond Ring</h3>
+            <p>Luxury Engagement Ring</p>
+            <p class="price">$500</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Silver Bracelet" data-category="jewellery" data-price="120">
+            <img src="Images/SB.jfif">
+            <h3>Silver Bracelet</h3>
+            <p>Elegant Design</p>
+            <p class="price">$120</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Pearl Earrings" data-category="jewellery" data-price="95">
+            <img src="Images/PE.jfif">
+            <h3>Pearl Earrings</h3>
+            <p>Classic Style</p>
+            <p class="price">$95</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Men Gold Chain" data-category="jewellery" data-price="280">
+            <img src="Images/MGC.jfif">
+            <h3>Men Gold Chain</h3>
+            <p>Premium Finish</p>
+            <p class="price">$280</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Kids Charm Bracelet" data-category="jewellery" data-price="60">
+            <img src="Images/KB.jfif">
+            <h3>Kids Charm Bracelet</h3>
+            <p>Cute Design</p>
+            <p class="price">$60</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer id="contact">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <div class="logo">Shop<span>Ease</span></div>
+                <p>Your one-stop shop for electronics, fashion & more.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="Electronics.html">Smartphones</a></li>
+                    <li><a href="Electronics.html">Laptops</a></li>
+                    <li><a href="fashion.html">Footwear</a></li>
+                    <li><a href="Electronics.html">Watches</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="viewOrder.html">Returns</a></li>
+                    <li><a href="viewOrder.html">Shipping</a></li>
+                    <li><a href="#contact">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email:
+                    <a href="mailto:support@shopease.com">
+                        support@shopease.com
+                    </a>
+                </p>
+                <p>Phone:
+                    <a href="tel:+9198765432100">
+                        +91 98765432100
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ShopEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script>
+        /* SAME JS AS BEFORE (UNCHANGED LOGIC) */
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const searchInput = document.getElementById("search-input");
+            const categoryFilter = document.getElementById("category-filter");
+            const priceFilter = document.getElementById("price-filter");
+            const sortFilter = document.getElementById("sort-filter");
+            const cartIcon = document.getElementById("cart");
+            const cartCount = document.getElementById("cart-count");
+            const cartList = document.getElementById("cart-items-list");
+            const cartTotal = document.getElementById("cart-total");
+            const clearCartBtn = document.getElementById("clear-cart-btn");
+            const toast = document.getElementById("toast");
+
+            let cart = {};
+
+            function showToast(msg) { toast.textContent = msg; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2000); }
+
+            function updateCartUI() {
+                cartList.innerHTML = "";
+                let total = 0, count = 0;
+                Object.keys(cart).forEach(name => {
+                    const item = cart[name];
+                    total += item.price * item.qty;
+                    count += item.qty;
+                    const li = document.createElement("li");
+                    li.innerHTML = `${name} (x${item.qty}) - $${(item.price * item.qty).toFixed(2)}
+<button onclick="removeFromCart('${name}')">X</button>`;
+                    cartList.appendChild(li);
+                });
+                cartCount.textContent = count;
+                cartTotal.textContent = "Total: $" + total.toFixed(2);
+            }
+
+            window.removeFromCart = function (name) {
+                if (cart[name]) {
+                    cart[name].qty--;
+                    if (cart[name].qty <= 0) delete cart[name];
+                    updateCartUI();
+                }
+            }
+
+            document.querySelectorAll(".add-cart-btn").forEach(btn => {
+                btn.onclick = () => {
+                    const card = btn.closest(".product-card");
+                    const name = card.dataset.name;
+                    const price = parseFloat(card.dataset.price);
+                    if (cart[name]) cart[name].qty++;
+                    else cart[name] = { price, qty: 1 };
+                    updateCartUI();
+                    showToast(name + " added to cart");
+                }
+            });
+
+            clearCartBtn.onclick = () => { cart = {}; updateCartUI(); }
+
+            cartIcon.onclick = (e) => { e.stopPropagation(); cartIcon.classList.toggle("active"); }
+            document.onclick = () => cartIcon.classList.remove("active");
+
+            function applyFilters() {
+                const cards = document.querySelectorAll(".product-card");
+                cards.forEach(card => {
+                    const name = card.dataset.name.toLowerCase();
+                    const category = card.dataset.category;
+                    const price = parseFloat(card.dataset.price);
+                    let show = true;
+
+                    if (searchInput.value && !name.includes(searchInput.value.toLowerCase())) show = false;
+                    if (categoryFilter.value !== "all" && category !== categoryFilter.value) show = false;
+                    if (priceFilter.value !== "all") {
+                        const [min, max] = priceFilter.value.split("-").map(Number);
+                        if (price < min || price > max) show = false;
+                    }
+                    card.style.display = show ? "flex" : "none";
+                });
+                sortProducts();
+            }
+
+            function sortProducts() {
+                const container = document.getElementById("products");
+                const cards = Array.from(document.querySelectorAll(".product-card")).filter(c => c.style.display !== "none");
+                if (sortFilter.value === "low") cards.sort((a, b) => a.dataset.price - b.dataset.price);
+                if (sortFilter.value === "high") cards.sort((a, b) => b.dataset.price - a.dataset.price);
+                cards.forEach(c => container.appendChild(c));
+            }
+
+            searchInput.addEventListener("input", applyFilters);
+            categoryFilter.addEventListener("change", applyFilters);
+            priceFilter.addEventListener("change", applyFilters);
+            sortFilter.addEventListener("change", applyFilters);
+
+        });
+    </script>
+
+</body>
+
+</html>

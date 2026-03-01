@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - ShopEase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">ShopEase</div>
+        <div class="nav-right">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <div class="cart-icon">
+                🛒 Cart <span id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAYMENT CONTAINER -->
+    <div class="payment-container">
+
+        <!-- LEFT: Payment Methods -->
+        <div class="payment-left">
+            <h2>Select Payment Method</h2>
+            <form id="payment-form">
+                <label>
+                    <input type="radio" name="payment-method" value="card" checked> Credit / Debit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="upi"> UPI
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="cod"> Cash on Delivery
+                </label>
+
+                <!-- Card Details -->
+                <div id="card-details" style="margin-top:10px;">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+
+                    <label for="card-name">Name on Card</label>
+                    <input type="text" id="card-name" placeholder="John Doe">
+
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY">
+
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123">
+                </div>
+
+                <!-- UPI Details -->
+                <div id="upi-details" style="display:none; margin-top:10px;">
+                    <label for="upi-id">Enter UPI ID</label>
+                    <input type="text" id="upi-id" placeholder="example@upi">
+                </div>
+
+                <button type="submit" class="pay-btn">Pay Now</button>
+            </form>
+        </div>
+
+        <!-- RIGHT: Order Summary -->
+        <div class="payment-right">
+            <h3>Order Summary</h3>
+            <div id="payment-cart-items"></div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping Fee</span>
+                <span id="shipping">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Platform Fee</span>
+                <span id="platform">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (5%)</span>
+                <span id="tax">₹0</span>
+            </div>
+            <div class="summary-row discount-row">
+                <span>Discount</span>
+                <span id="discount">₹0</span>
+            </div>
+            <hr>
+            <div class="summary-total">
+                <span>Total</span>
+                <span id="total">₹0</span>
+            </div>
+        </div>
+
+    </div>
+
+        <!-- ================= FOOTER ================= -->
+    <footer id="contact">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <div class="logo">Shop<span>Ease</span></div>
+                <p>Your one-stop shop for electronics, fashion & more.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="Electronics.html">Smartphones</a></li>
+                    <li><a href="Electronics.html">Laptops</a></li>
+                    <li><a href="fashion.html">Footwear</a></li>
+                    <li><a href="Electronics.html">Watches</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="viewOrder.html">Returns</a></li>
+                    <li><a href="viewOrder.html">Shipping</a></li>
+                    <li><a href="#contact">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email:
+                    <a href="mailto:support@shopease.com">
+                        support@shopease.com
+                    </a>
+                </p>
+                <p>Phone:
+                    <a href="tel:+9198765432100">
+                        +91 98765432100
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ShopEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="payment.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacBook Pro 16-inch | ElectroMart</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2874f0;
+            --light: #f1f3f6;
+            --text-gray: #878787;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: #212121;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart span {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #ff6161;
+            padding: 3px 7px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 0.9fr;
+            gap: 30px;
+        }
+
+        /* IMAGE */
+        .image-box {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .image-box img {
+            width: 100%;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .thumbnails img {
+            width: 60px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        /* DETAILS */
+        .details {
+            background: #fff;
+            padding: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .rating {
+            margin: 10px 0;
+            color: #388e3c;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .mrp {
+            text-decoration: line-through;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .discount {
+            color: #388e3c;
+        }
+
+        .offers li {
+            margin: 8px 0;
+        }
+
+        /* BUY BOX */
+        .buy-box {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .stock {
+            color: #388e3c;
+            margin: 10px 0;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            font-weight: 600;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .add {
+            background: #ff9f00;
+        }
+
+        .buy {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* PRODUCT DETAILS SECTION */
+        .product-details-section {
+            margin-top: 50px;
+            background: #fff;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+            font-size: 22px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .details-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .highlights li {
+            margin-left: 18px;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            margin-top: 10px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .spec-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* RATING BREAKDOWN */
+        .rating-bars {
+            margin-top: 20px;
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .bar span {
+            width: 60px;
+        }
+
+        .progress {
+            flex: 1;
+            height: 8px;
+            background: #ddd;
+            margin: 0 10px;
+        }
+
+        .fill {
+            height: 100%;
+            background: var(--primary);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:1000px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buy-box {
+                position: relative;
+                top: 0;
+            }
+
+            .details-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">ElectroMart</div>
+        <div class="cart">🛒 <span id="cartCount">0</span></div>
+    </header>
+
+    <div class="container">
+
+        <div class="product-grid">
+
+            <!-- IMAGE -->
+            <div class="image-box">
+                <img src="https://picsum.photos/500?1" id="mainImage">
+                <div class="thumbnails">
+                    <img src="https://picsum.photos/500?1">
+                    <img src="https://picsum.photos/500?2">
+                    <img src="https://picsum.photos/500?3">
+                    <img src="https://picsum.photos/500?3">
+                </div>
+            </div>
+
+            <!-- DETAILS -->
+            <div class="details">
+                <div class="title">
+                    Apple MacBook Pro 16-inch (M1 Pro, 16GB RAM, 512GB SSD)
+                </div>
+
+                <div class="rating">4.5 ★ (120 Ratings)</div>
+
+                <div class="price">$2,399</div>
+                <div class="mrp">$2,499</div>
+                <div class="discount">4% off</div>
+
+                <ul class="offers">
+                    <li>✔ 5% Cashback on Credit Cards</li>
+                    <li>✔ No Cost EMI Available</li>
+                    <li>✔ Free 2-Day Delivery</li>
+                </ul>
+            </div>
+
+            <!-- BUY BOX -->
+            <div class="buy-box">
+                <div class="price" id="priceBox">$2,399</div>
+                <div class="stock">In Stock</div>
+
+                <label>Color</label>
+                <select id="color">
+                    <option value="2399">Silver</option>
+                    <option value="2499">Space Gray (+$100)</option>
+                </select>
+
+                <label>Quantity</label>
+                <input type="number" id="qty" value="1" min="1">
+
+                <button class="btn add" id="addCart">Add to Cart</button>
+                <button class="btn buy">Buy Now</button>
+            </div>
+
+        </div>
+
+        <!-- PRODUCT DETAILS -->
+        <div class="product-details-section">
+            <h2 class="section-title">Product Details</h2>
+
+            <div class="details-wrapper">
+
+                <div>
+                    <h3>Highlights</h3>
+                    <ul class="highlights">
+                        <li>M1 Pro 10-Core Chip</li>
+                        <li>16GB Unified Memory</li>
+                        <li>512GB SSD Storage</li>
+                        <li>Liquid Retina XDR Display</li>
+                        <li>21 Hours Battery Life</li>
+                        <li>Touch ID Security</li>
+                    </ul>
+
+                    <h3>Description</h3>
+                    <p class="description">
+                        Designed for professionals, the MacBook Pro 16-inch delivers extreme performance
+                        with its powerful M1 Pro chip, stunning Retina display, and all-day battery life.
+                        Perfect for editing, coding, designing, and multitasking.
+                    </p>
+
+                    <div class="rating-bars">
+                        <h3>Rating Breakdown</h3>
+
+                        <div class="bar">
+                            <span>5★</span>
+                            <div class="progress">
+                                <div class="fill" style="width:70%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar">
+                            <span>4★</span>
+                            <div class="progress">
+                                <div class="fill" style="width:20%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar">
+                            <span>3★</span>
+                            <div class="progress">
+                                <div class="fill" style="width:7%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar">
+                            <span>2★</span>
+                            <div class="progress">
+                                <div class="fill" style="width:2%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar">
+                            <span>1★</span>
+                            <div class="progress">
+                                <div class="fill" style="width:1%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Processor</td>
+                            <td>Apple M1 Pro</td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td>16GB</td>
+                        </tr>
+                        <tr>
+                            <td>Storage</td>
+                            <td>512GB SSD</td>
+                        </tr>
+                        <tr>
+                            <td>Display</td>
+                            <td>16-inch Retina XDR</td>
+                        </tr>
+                        <tr>
+                            <td>Battery</td>
+                            <td>Up to 21 Hours</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>2.1 kg</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>1 Year</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Thumbnail switch
+        const thumbs = document.querySelectorAll(".thumbnails img");
+        const mainImage = document.getElementById("mainImage");
+        thumbs.forEach(img => {
+            img.addEventListener("click", () => {
+                mainImage.src = img.src;
+            });
+        });
+
+        // Price update
+        const color = document.getElementById("color");
+        const qty = document.getElementById("qty");
+        const priceBox = document.getElementById("priceBox");
+
+        function updatePrice() {
+            let base = parseFloat(color.value);
+            let quantity = parseInt(qty.value);
+            priceBox.textContent = "$" + (base * quantity).toLocaleString();
+        }
+
+        color.addEventListener("change", updatePrice);
+        qty.addEventListener("input", updatePrice);
+
+        // Cart
+        let cartCount = localStorage.getItem("cartCount") || 0;
+        document.getElementById("cartCount").textContent = cartCount;
+
+        document.getElementById("addCart").addEventListener("click", () => {
+            cartCount = parseInt(cartCount) + parseInt(qty.value);
+            localStorage.setItem("cartCount", cartCount);
+            document.getElementById("cartCount").textContent = cartCount;
+            alert("Item added to cart!");
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toys & Sports Store</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f3f6;
+        }
+
+        header {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo span {
+            color: #0077cc;
+        }
+
+        /* ================= SEARCH BOX ================= */
+        .search-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d1d5db;
+            border-radius: 25px;
+            overflow: hidden;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input {
+            border: none;
+            padding: 10px 15px;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-box button {
+            border: none;
+            background: #0077cc;
+            color: #fff;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+        }
+
+        .search-box button:hover {
+            background: #005fa3;
+        }
+
+
+        #cart {
+            background: #2874f0;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            width: 260px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        #cart.active .cart-dropdown {
+            display: block;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            padding: 20px 40px;
+        }
+
+        .filters select {
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+
+        main#products {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 260px);
+            justify-content: center;
+            gap: 25px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            width: 260px;
+            height: 420px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            margin: 12px;
+            font-size: 16px;
+        }
+
+        .product-card p {
+            margin: 3px 12px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2874f0;
+        }
+
+        .add-cart-btn {
+            margin: 12px;
+            padding: 10px;
+            border: none;
+            background: #2874f0;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #ffffff;
+            padding: 40px 40px 20px;
+            border-top: 1px solid #d1d5db;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Layout */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Columns */
+        .footer-col {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        /* Headings */
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #2563eb;
+            /* brand blue */
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            margin-bottom: 12px;
+            color: #111827;
+        }
+
+        /* Text */
+        .footer-col p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Links */
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #2563eb;
+            padding-left: 4px;
+        }
+
+        /* Bottom */
+        .footer-bottom {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 30px;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        #toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Shop<span>Ease</span></div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <button onclick="searchProduct()">🔍</button>
+        </div>
+        <div id="cart">
+            🛒 <span id="cart-count">0</span>
+            <div class="cart-dropdown">
+                <ul id="cart-items-list"></ul>
+                <p id="cart-total">Total: $0</p>
+                <button id="clear-cart-btn">Clear Cart</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="filters">
+        <select id="category-filter">
+            <option value="all">All Categories</option>
+            <option value="toys">Toys</option>
+            <option value="indoor">Indoor Games</option>
+            <option value="outdoor">Outdoor Sports</option>
+            <option value="fitness">Fitness</option>
+        </select>
+
+        <select id="price-filter">
+            <option value="all">All Prices</option>
+            <option value="0-50">Under $50</option>
+            <option value="50-150">$50 - $150</option>
+            <option value="150-1000">Above $150</option>
+        </select>
+
+        <select id="sort-filter">
+            <option value="default">Sort By</option>
+            <option value="low">Price Low to High</option>
+            <option value="high">Price High to Low</option>
+        </select>
+    </section>
+
+    <main id="products">
+
+        <!-- TOYS -->
+        <div class="product-card" data-name="Remote Control Car" data-category="toys" data-price="45">
+            <img src="Images/RCC.jfif">
+            <h3>Remote Control Car</h3>
+            <p>High Speed Racing</p>
+            <p class="price">$45</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Teddy Bear" data-category="toys" data-price="30">
+            <img src="Images/TB.jfif">
+            <h3>Teddy Bear</h3>
+            <p>Soft Plush Toy</p>
+            <p class="price">$30</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- INDOOR -->
+        <div class="product-card" data-name="Chess Board" data-category="indoor" data-price="25">
+            <img src="Images/CB.jfif">
+            <h3>Chess Board</h3>
+            <p>Wooden Classic</p>
+            <p class="price">$25</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Carrom Board" data-category="indoor" data-price="120">
+            <img src="Images/CBB.jfif">
+            <h3>Carrom Board</h3>
+            <p>Premium Finish</p>
+            <p class="price">$120</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- OUTDOOR -->
+        <div class="product-card" data-name="Football" data-category="outdoor" data-price="35">
+            <img src="Images/FB.jfif">
+            <h3>Football</h3>
+            <p>Professional Size 5</p>
+            <p class="price">$35</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Cricket Bat" data-category="outdoor" data-price="150">
+            <img src="Images/CBBB.jfif">
+            <h3>Cricket Bat</h3>
+            <p>English Willow</p>
+            <p class="price">$150</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+
+        <div class="product-card" data-name="Camping Tent" data-category="outdoor" data-price="120">
+            <img src="Images/T.jfif">
+            <h3>Camping Tent</h3>
+            <p>4-Person Tent</p>
+            <p class="price">$120</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- FITNESS -->
+        <div class="product-card" data-name="Dumbbells Set" data-category="fitness" data-price="90">
+            <img src="Images/DUB.jfif">
+            <h3>Dumbbells Set</h3>
+            <p>Adjustable Weights</p>
+            <p class="price">$90</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Treadmill" data-category="fitness" data-price="650">
+            <img src="Images/ET.jfif">
+            <h3>Treadmill</h3>
+            <p>Motorized Running</p>
+            <p class="price">$650</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Yoga Mat" data-category="fitness" data-price="20">
+            <img src="Images/YM.jfif">
+            <h3>Yoga Mat</h3>
+            <p>Eco-Friendly Material</p>
+            <p class="price">$20</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Jump Rope" data-category="fitness" data-price="10">
+            <img src="Images/RH.jfif">
+            <h3>Jump Rope</h3>
+            <p>High Speed Skipping</p>
+            <p class="price">$10</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Foam Roller" data-category="fitness" data-price="25">
+            <img src="Images/SP.jfif">
+            <h3>Foam Roller</h3>
+            <p>Muscle Recovery Aid</p>
+            <p class="price">$25</p>
+            <button class="add-cart-btn">Add to Cart</button>
+        </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer id="contact">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <div class="logo">Shop<span>Ease</span></div>
+                <p>Your one-stop shop for electronics, fashion & more.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="Electronics.html">Smartphones</a></li>
+                    <li><a href="Electronics.html">Laptops</a></li>
+                    <li><a href="fashion.html">Footwear</a></li>
+                    <li><a href="Electronics.html">Watches</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="viewOrder.html">Returns</a></li>
+                    <li><a href="viewOrder.html">Shipping</a></li>
+                    <li><a href="#contact">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email:
+                    <a href="mailto:support@shopease.com">
+                        support@shopease.com
+                    </a>
+                </p>
+                <p>Phone:
+                    <a href="tel:+9198765432100">
+                        +91 98765432100
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ShopEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <div id="toast"></div>
+
+    <script>
+        /* SAME JS SYSTEM — COPY FROM YOUR ORIGINAL */
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const searchInput = document.getElementById("search-input");
+            const categoryFilter = document.getElementById("category-filter");
+            const priceFilter = document.getElementById("price-filter");
+            const sortFilter = document.getElementById("sort-filter");
+            const cartIcon = document.getElementById("cart");
+            const cartCount = document.getElementById("cart-count");
+            const cartList = document.getElementById("cart-items-list");
+            const cartTotal = document.getElementById("cart-total");
+            const clearCartBtn = document.getElementById("clear-cart-btn");
+            const toast = document.getElementById("toast");
+
+            let cart = {};
+
+            function showToast(msg) { toast.textContent = msg; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2000); }
+
+            function updateCartUI() {
+                cartList.innerHTML = "";
+                let total = 0, count = 0;
+                Object.keys(cart).forEach(name => {
+                    const item = cart[name];
+                    total += item.price * item.qty;
+                    count += item.qty;
+                    const li = document.createElement("li");
+                    li.innerHTML = `${name} (x${item.qty}) - $${(item.price * item.qty).toFixed(2)}
+<button onclick="removeFromCart('${name}')">X</button>`;
+                    cartList.appendChild(li);
+                });
+                cartCount.textContent = count;
+                cartTotal.textContent = "Total: $" + total.toFixed(2);
+            }
+
+            window.removeFromCart = function (name) {
+                if (cart[name]) {
+                    cart[name].qty--;
+                    if (cart[name].qty <= 0) delete cart[name];
+                    updateCartUI();
+                }
+            }
+
+            document.querySelectorAll(".add-cart-btn").forEach(btn => {
+                btn.onclick = () => {
+                    const card = btn.closest(".product-card");
+                    const name = card.dataset.name;
+                    const price = parseFloat(card.dataset.price);
+                    if (cart[name]) cart[name].qty++;
+                    else cart[name] = { price, qty: 1 };
+                    updateCartUI();
+                    showToast(name + " added to cart");
+                }
+            });
+
+            clearCartBtn.onclick = () => { cart = {}; updateCartUI(); }
+            cartIcon.onclick = (e) => { e.stopPropagation(); cartIcon.classList.toggle("active"); }
+            document.onclick = () => cartIcon.classList.remove("active");
+
+            function applyFilters() {
+                const cards = document.querySelectorAll(".product-card");
+                cards.forEach(card => {
+                    const name = card.dataset.name.toLowerCase();
+                    const category = card.dataset.category;
+                    const price = parseFloat(card.dataset.price);
+                    let show = true;
+
+                    if (searchInput.value && !name.includes(searchInput.value.toLowerCase())) show = false;
+                    if (categoryFilter.value !== "all" && category !== categoryFilter.value) show = false;
+                    if (priceFilter.value !== "all") {
+                        const [min, max] = priceFilter.value.split("-").map(Number);
+                        if (price < min || price > max) show = false;
+                    }
+                    card.style.display = show ? "flex" : "none";
+                });
+                sortProducts();
+            }
+
+            function sortProducts() {
+                const container = document.getElementById("products");
+                const cards = Array.from(document.querySelectorAll(".product-card")).filter(c => c.style.display !== "none");
+                if (sortFilter.value === "low") cards.sort((a, b) => a.dataset.price - b.dataset.price);
+                if (sortFilter.value === "high") cards.sort((a, b) => b.dataset.price - a.dataset.price);
+                cards.forEach(c => container.appendChild(c));
+            }
+
+            searchInput.addEventListener("input", applyFilters);
+            categoryFilter.addEventListener("change", applyFilters);
+            priceFilter.addEventListener("change", applyFilters);
+            sortFilter.addEventListener("change", applyFilters);
+
+        });
+    </script>
+
+</body>
+
+</html>
